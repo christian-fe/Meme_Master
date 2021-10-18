@@ -102,5 +102,31 @@ namespace Meme.Controllers
             return NoContent();
 
         }
+
+        [HttpDelete("{categoryId:int}", Name = "DeleteCategory")]
+        public IActionResult DeleteCategory(int categoryId)
+        {
+
+            //var category = _mapper.Map<Category>(categoryDto);
+
+            //validate if exist
+            if (!_ctRepo.ExistCategory(categoryId))
+            {
+                return NotFound();
+            }
+
+            var category = _ctRepo.GetCategory(categoryId);
+
+            //validate bad request
+            if (!_ctRepo.DeleteCategory(category))
+            {
+                ModelState.AddModelError("", $"Something went wrong when deleting the category {category.CategoryName}");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+
+        }
+
     }
 }

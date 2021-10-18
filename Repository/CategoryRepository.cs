@@ -35,7 +35,7 @@ namespace Meme.Repository
         /// <returns></returns>
         public bool DeleteCategory(Category category)
         {
-            _db.Categories.Update(category);
+            _db.Categories.Remove(category);
             return SaveChanges();
         }
 
