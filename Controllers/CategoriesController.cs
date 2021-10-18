@@ -80,5 +80,27 @@ namespace Meme.Controllers
 
             return CreatedAtRoute("GetCategory", new { categoryId = category.IdCategory },category);
         }
+
+        [HttpPatch("{categoryId:int}", Name = "UpdateCategory")]
+        public IActionResult UpdateCategory(int categoryId, [FromBody]CategoryDto categoryDto)
+        {
+            //validate is not null or Id doesn't match
+            if(categoryDto==null || categoryId != categoryDto.IdCategory)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var category = _mapper.Map<Category>(categoryDto);
+
+            //validate bad request
+            if (!_ctRepo.UpdateCategory(category))
+            {
+                ModelState.AddModelError("", $"Something went wrong when updating the category {category.CategoryName}");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+
+        }
     }
 }
