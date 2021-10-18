@@ -2,12 +2,8 @@
 using Meme.Models;//*
 using Meme.Models.Dto;//*
 using Meme.Repository.IRepository;//*
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Meme.Controllers
 {
