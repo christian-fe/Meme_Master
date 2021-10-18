@@ -1,7 +1,7 @@
-﻿using Meme.Models;//*
+﻿using Memes.Models;//*
 using Microsoft.EntityFrameworkCore;//*
 
-namespace Meme.Data
+namespace Memes.Data
 {
     public class ApplicationDbContext :DbContext
     {
@@ -10,6 +10,7 @@ namespace Meme.Data
 
         }
 
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Meme> Meme { get; set; }
     }
 }

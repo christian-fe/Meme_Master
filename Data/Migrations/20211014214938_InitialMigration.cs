@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Meme.Migrations
+namespace Memes.Migrations
 {
     public partial class InitialMigration : Migration
     {

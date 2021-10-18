@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Meme.Models
+namespace Memes.Models
 {
     public class Category
     {

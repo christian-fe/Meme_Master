@@ -1,8 +1,8 @@
-﻿using Meme.Models;
+﻿using Memes.Models;
 using System;
 using System.Collections.Generic;
 
-namespace Meme.Repository.IRepository
+namespace Memes.Repository.IRepository
 {
     /// <summary>
     /// Methods for Category Entity

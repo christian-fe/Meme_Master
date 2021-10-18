@@ -1,11 +1,11 @@
-﻿using Meme.Data;//*
-using Meme.Models;//*
-using Meme.Repository.IRepository;//*
+﻿using Memes.Data;//*
+using Memes.Models;//*
+using Memes.Repository.IRepository;//*
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Meme.Repository
+namespace Memes.Repository
 {
     public class CategoryRepository : ICategoryRepository
     {
@@ -24,7 +24,7 @@ namespace Meme.Repository
         /// <returns></returns>
         public bool CreateCategory(Category category)
         {
-            _db.Categories.Add(category);
+            _db.Category.Add(category);
             return SaveChanges();
         }
 
@@ -35,7 +35,7 @@ namespace Meme.Repository
         /// <returns></returns>
         public bool DeleteCategory(Category category)
         {
-            _db.Categories.Remove(category);
+            _db.Category.Remove(category);
             return SaveChanges();
         }
 
@@ -46,7 +46,7 @@ namespace Meme.Repository
         /// <returns></returns>
         public bool ExistCategory(string categoryName)
         {
-            return _db.Categories.Any(cat => cat.CategoryName.ToLower().Trim() == categoryName.ToLower().Trim());            
+            return _db.Category.Any(cat => cat.CategoryName.ToLower().Trim() == categoryName.ToLower().Trim());            
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Meme.Repository
         /// <returns></returns>
         public bool ExistCategory(int id)
         {
-            return _db.Categories.Any(cat => cat.IdCategory == id);            
+            return _db.Category.Any(cat => cat.IdCategory == id);            
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Meme.Repository
         /// <returns></returns>
         public ICollection<Category> GetCategories()
         {
-            return _db.Categories.OrderBy(cat => cat.CategoryName).ToList();
+            return _db.Category.OrderBy(cat => cat.CategoryName).ToList();
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Meme.Repository
         /// <returns></returns>
         public Category GetCategory(int categoryId)
         {
-            return _db.Categories.FirstOrDefault(cat => cat.IdCategory == categoryId);
+            return _db.Category.FirstOrDefault(cat => cat.IdCategory == categoryId);
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Meme.Repository
         /// <returns></returns>
         public bool UpdateCategory(Category category)
         {
-            _db.Categories.Update(category);
+            _db.Category.Update(category);
             return SaveChanges();
         }
     }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Memes.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211014214938_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20211018224434_Meme_DataBaseObject")]
+    partial class Meme_DataBaseObject
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,7 +36,7 @@ namespace Memes.Migrations
 
                     b.HasKey("IdCategory");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Category");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;//*
-using Meme.Models;//*
-using Meme.Models.Dto;//*
-using Meme.Repository.IRepository;//*
+using Memes.Models;//*
+using Memes.Models.Dto;//*
+using Memes.Repository.IRepository;//*
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
-namespace Meme.Controllers
+namespace Memes.Controllers
 {
     [Route("api/Categories")]
     [ApiController]
@@ -34,7 +34,6 @@ namespace Meme.Controllers
             return Ok(categoriesDtoList);
         }
 
-
         [HttpGet("{categoryId:int}", Name = "GetCategory")]
         public IActionResult GetCategory(int categoryId)
         {
@@ -51,7 +50,6 @@ namespace Meme.Controllers
             }
 
         }
-
 
         [HttpPost]
         public IActionResult CreateCategory([FromBody] CategoryDto categoryDto)

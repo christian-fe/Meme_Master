@@ -1,6 +1,6 @@
-using Meme.Data;//*
-using Meme.Repository;//*
-using Meme.Repository.IRepository;//*
+using Memes.Data;//*
+using Memes.Repository;//*
+using Memes.Repository.IRepository;//*
 using AutoMapper;//*
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,9 +13,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using Meme.MemeMapper;//*
+using Memes.MemeMapper;//*
 
-namespace Meme
+namespace Memes
 {
     public class Startup
     {

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;//*
-using Meme.Models;//*
-using Meme.Models.Dto;//*
+using Memes.Models;//*
+using Memes.Models.Dto;//*
 
-namespace Meme.MemeMapper
+namespace Memes.MemeMapper
 {
     public class MemeMappers:Profile
     {
