@@ -69,7 +69,7 @@ namespace Meme.Controllers
             //validate if exist
             if(_ctRepo.ExistCategory(categoryDto.CategoryName))
             {
-                ModelState.AddModelError("", "The category is already exist");
+                ModelState.AddModelError("", "The category already exists");
                 return StatusCode(404, ModelState);
             }
 
@@ -78,7 +78,7 @@ namespace Meme.Controllers
             //validate bad request
             if(!_ctRepo.CreateCategory(category))
             {
-                ModelState.AddModelError("", $"Something is wrong saving the category {category.CategoryName}");
+                ModelState.AddModelError("", $"Something went wrong when saving the category {category.CategoryName}");
                 return StatusCode(500, ModelState);
             }
 
