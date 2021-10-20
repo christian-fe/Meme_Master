@@ -11,6 +11,6 @@ namespace Memes.Data
         }
 
         public DbSet<Category> Category { get; set; }
-        public DbSet<Meme> Meme { get; set; }
+        public DbSet<Photo> Photo { get; set; }
     }
 }

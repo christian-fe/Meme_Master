@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Memes.Models
 {
-    public class Meme
+    public class Photo
     {
         [Key]
         public int MemeId{ get; set; }

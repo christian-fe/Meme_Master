@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
-using static Memes.Models.Meme;
+using static Memes.Models.Photo;
 
 namespace Meme.Models.Dto
 {

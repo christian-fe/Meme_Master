@@ -12,14 +12,20 @@ namespace Memes.Repository.IRepository
         /// Retrieve all memes
         /// </summary>
         /// <returns>Meme objects</returns>
-        ICollection<Memes.Models.Meme> GetMemes();
+        ICollection<Photo> GetMemes();
+
+        /// <summary>
+        /// Retrieve all memes by category
+        /// </summary>
+        /// <returns></returns>
+        ICollection<Photo> GetMemesByCategory(int idCategory);
 
         /// <summary>
         /// Retrieve only one meme
         /// </summary>
         /// <param name="MemeId"></param>
         /// <returns>object category</returns>
-        Memes.Models.Meme GetMeme(int MemeId);
+        Photo GetMeme(int MemeId);
 
         /// <summary>
         /// Validate the existence of a meme by name
@@ -27,6 +33,13 @@ namespace Memes.Repository.IRepository
         /// <param name="MemeName"></param>
         /// <returns></returns>
         bool ExistMeme(string MemeName);
+
+        /// <summary>
+        /// Get Memes By Name
+        /// </summary>
+        /// <param name="memeName"></param>
+        /// <returns></returns>
+        IEnumerable<Photo> GetMemesByName(string memeName);
 
         /// <summary>
         /// Validate the existence of a meme by Id
@@ -40,21 +53,21 @@ namespace Memes.Repository.IRepository
         /// </summary>
         /// <param name="meme"></param>
         /// <returns></returns>
-        bool CreateMeme(Memes.Models.Meme meme);
+        bool CreateMeme(Photo meme);
 
         /// <summary>
         /// Update meme
         /// </summary>
         /// <param name="meme"></param>
         /// <returns></returns>
-        bool UpdateMeme(Memes.Models.Meme meme);
+        bool UpdateMeme(Photo meme);
 
         /// <summary>
         /// Delete a meme
         /// </summary>
         /// <param name="meme"></param>
         /// <returns></returns>
-        bool DeleteMeme(Memes.Models.Meme meme);
+        bool DeleteMeme(Photo meme);
 
         /// <summary>
         /// Perform the action save

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static Memes.Models.Meme;
+using static Memes.Models.Photo;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 using Memes.Models;
