@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static Memes.Models.Photo;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
-using Memes.Models;
+using static Memes.Models.Photo;
 
-namespace Meme.Models.Dto
+namespace Memes.Models.Dto
 {
-    public class MemeCreateDto
+    public class PhotoUpdateDto
     {
+        public int PhotoId { get; set; }
         [Required(ErrorMessage = "Mandatory Field")]
-        public string MemeName { get; set; }
+        public string PhotoName { get; set; }
         [Required(ErrorMessage = "Mandatory Field")]
         public string ImagePath { get; set; }
-        public IFormFile Photo { get; set; }
         public string TopText { get; set; }
         public string BottomText { get; set; }
         public MemeType Category { get; set; }

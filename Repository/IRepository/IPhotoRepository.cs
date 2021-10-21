@@ -4,70 +4,70 @@ using System.Collections.Generic;
 namespace Memes.Repository.IRepository
 {
     /// <summary>
-    /// Methods for Meme Entity
+    /// Methods for Photo Entity
     /// </summary>
-    public interface IMemeRepository
+    public interface IPhotoRepository
     {
         /// <summary>
-        /// Retrieve all memes
+        /// Retrieve all photo
         /// </summary>
         /// <returns>Meme objects</returns>
-        ICollection<Photo> GetMemes();
+        ICollection<Photo> GetPhoto();
 
         /// <summary>
-        /// Retrieve all memes by category
+        /// Retrieve all photos by category
         /// </summary>
         /// <returns></returns>
-        ICollection<Photo> GetMemesByCategory(int idCategory);
+        ICollection<Photo> GetPhotoByCategory(int idCategory);
 
         /// <summary>
-        /// Retrieve only one meme
+        /// Retrieve only one photo
         /// </summary>
-        /// <param name="MemeId"></param>
+        /// <param name="photoId"></param>
         /// <returns>object category</returns>
-        Photo GetMeme(int MemeId);
+        Photo GetPhoto(int photoId);
 
         /// <summary>
-        /// Validate the existence of a meme by name
+        /// Validate the existence of a photo by name
         /// </summary>
-        /// <param name="MemeName"></param>
+        /// <param name="photoName"></param>
         /// <returns></returns>
-        bool ExistMeme(string MemeName);
+        bool ExistPhoto(string photoName);
 
         /// <summary>
-        /// Get Memes By Name
+        /// Get Photos By Name
         /// </summary>
-        /// <param name="memeName"></param>
+        /// <param name="photoName"></param>
         /// <returns></returns>
-        IEnumerable<Photo> GetMemesByName(string memeName);
+        IEnumerable<Photo> GetPhotoByName(string photoName);
 
         /// <summary>
-        /// Validate the existence of a meme by Id
+        /// Validate the existence of a photo by Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        bool ExistMeme(int id);
+        bool ExistPhoto(int id);
 
         /// <summary>
-        /// Create a new meme
+        /// Create a new photo
+        /// </summary>
+        /// <param name="photo"></param>
+        /// <returns></returns>
+        bool CreatePhoto(Photo photo);
+
+        /// <summary>
+        /// Update photo
         /// </summary>
         /// <param name="meme"></param>
         /// <returns></returns>
-        bool CreateMeme(Photo meme);
+        bool UpdatePhoto(Photo photo);
 
         /// <summary>
-        /// Update meme
+        /// Delete a photo
         /// </summary>
-        /// <param name="meme"></param>
+        /// <param name="photo"></param>
         /// <returns></returns>
-        bool UpdateMeme(Photo meme);
-
-        /// <summary>
-        /// Delete a meme
-        /// </summary>
-        /// <param name="meme"></param>
-        /// <returns></returns>
-        bool DeleteMeme(Photo meme);
+        bool DeletePhoto(Photo photo);
 
         /// <summary>
         /// Perform the action save

@@ -10,8 +10,8 @@ namespace Memes.Models
     public class Photo
     {
         [Key]
-        public int MemeId{ get; set; }
-        public string MemeName { get; set; }
+        public int PhotoId{ get; set; }
+        public string PhotoName { get; set; }
         public string ImagePath { get; set; }
         public string TopText { get; set; }
         public string BottomText { get; set; }
