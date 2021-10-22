@@ -17,7 +17,7 @@ namespace Memes.Models.Dto
         public IFormFile Photo { get; set; }
         public string TopText { get; set; }
         public string BottomText { get; set; }
-        public MemeType Category { get; set; }
+        public MemeType Option { get; set; }
         //--------------------------------------------------------
         public int IdCategory { get; set; }
     }

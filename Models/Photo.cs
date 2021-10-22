@@ -16,11 +16,11 @@ namespace Memes.Models
         public string TopText { get; set; }
         public string BottomText { get; set; }
         public enum MemeType { Animals, Movies, Cartoon, People }
-        public MemeType Category {get;set;}
+        public MemeType Option { get; set; }
         public DateTime CreationDate { get; set; }
         //--------------------------------------------------------
         public int IdCategory { get; set; }
         [ForeignKey("IdCategory")]
-        public Category category { get; set; }
+        public Category Category { get; set; }
     }
 }
