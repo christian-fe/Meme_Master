@@ -4,16 +4,14 @@ using Memes.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Memes.Migrations
+namespace Meme.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211020030734_Photo_DbObject")]
-    partial class Photo_DbObject
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,16 +39,13 @@ namespace Memes.Migrations
 
             modelBuilder.Entity("Memes.Models.Photo", b =>
                 {
-                    b.Property<int>("MemeId")
+                    b.Property<int>("PhotoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("BottomText")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -61,13 +56,16 @@ namespace Memes.Migrations
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MemeName")
+                    b.Property<int>("Option")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PhotoName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TopText")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("MemeId");
+                    b.HasKey("PhotoId");
 
                     b.HasIndex("IdCategory");
 
@@ -76,13 +74,13 @@ namespace Memes.Migrations
 
             modelBuilder.Entity("Memes.Models.Photo", b =>
                 {
-                    b.HasOne("Memes.Models.Category", "category")
+                    b.HasOne("Memes.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("IdCategory")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("category");
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }
