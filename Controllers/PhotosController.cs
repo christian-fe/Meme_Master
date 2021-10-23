@@ -5,6 +5,8 @@ using Memes.Repository.IRepository;//*
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;//*
+using Microsoft.AspNetCore.Hosting;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,10 +18,12 @@ namespace Meme.Controllers
     {
         private readonly IPhotoRepository _phRepo;
         private readonly IMapper _mapper;
-        public PhotosController(IPhotoRepository phRepo, IMapper mapper)
+        private readonly IWebHostEnvironment _hostingEnviroment;
+        public PhotosController(IPhotoRepository phRepo, IMapper mapper, IWebHostEnvironment hostingEnvironment)
         {
             _phRepo = phRepo;
             _mapper = mapper;
+            _hostingEnviroment = hostingEnvironment;
         }
 
         [HttpGet]
@@ -54,8 +58,29 @@ namespace Meme.Controllers
 
         }
 
+        [HttpGet("GetPhotoByCategory/{idCategory:int}")]
+        public IActionResult GetPhotoByCategory(int idCategory)
+        {
+            var photoList = _phRepo.GetPhotoByCategory(idCategory);
+
+            //validate if is null
+            if(photoList == null)
+            {
+                return NotFound();
+            }
+
+            var photoListDto = new List<PhotoDto>();
+
+            foreach(var photo in photoList)
+            {
+                photoListDto.Add(_mapper.Map<PhotoDto>(photo));
+            }
+
+            return Ok(photoListDto);
+        }
+
         [HttpPost]
-        public IActionResult CreatePhoto([FromBody] PhotoDto photoDto)
+        public IActionResult CreatePhoto([FromForm] PhotoCreateDto photoDto)
         {
             //validate is not null
             if (photoDto == null)
@@ -69,6 +94,27 @@ namespace Meme.Controllers
                 ModelState.AddModelError("", "The Photo already exists");
                 return StatusCode(404, ModelState);
             }
+
+            /*------------------uploading files------------------------*/
+
+            var file = photoDto.Photo;
+            string principalPath = _hostingEnviroment.WebRootPath;
+            var files = HttpContext.Request.Form.Files;
+
+            if (file.Length > 0)
+            {
+                //new photo or image
+                var photoName = Guid.NewGuid().ToString();
+                var uploads = Path.Combine(principalPath, @"photos");
+                var extension = Path.GetExtension(files[0].FileName);
+
+                using (var fileStreams = new FileStream(Path.Combine(uploads, photoName + extension), FileMode.Create))
+                { 
+                    files[0].CopyTo(fileStreams);
+                } 
+
+                photoDto.ImagePath = @"\photos\" + photoName + extension;
+            }                      
 
             var photo = _mapper.Map<Photo>(photoDto);
 

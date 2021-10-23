@@ -10,6 +10,8 @@ namespace Memes.MemeMapper
         {
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<Photo, PhotoDto>().ReverseMap();
+            CreateMap<Photo, PhotoUpdateDto>().ReverseMap();
+            CreateMap<Photo, PhotoCreateDto>().ReverseMap();
         }
     }
 }

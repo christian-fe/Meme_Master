@@ -12,7 +12,6 @@ namespace Memes.Models.Dto
     {
         [Required(ErrorMessage = "Mandatory Field")]
         public string PhotoName { get; set; }
-        [Required(ErrorMessage = "Mandatory Field")]
         public string ImagePath { get; set; }
         public IFormFile Photo { get; set; }
         public string TopText { get; set; }
