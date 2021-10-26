@@ -5,6 +5,7 @@ using Memes.Repository.IRepository;//*
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -104,10 +105,22 @@ namespace Memes.Controllers
 
             // Token Generation
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
-
+            
+            
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
-            //var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = credentials
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return Ok(new { 
+                token = tokenHandler.WriteToken(token)
+            });
         }
     }
 }

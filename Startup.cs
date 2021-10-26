@@ -14,6 +14,9 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using Memes.MemeMapper;//*
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Memes
 {
@@ -40,6 +43,20 @@ namespace Memes
 
             //Dependency Injection for User Resource
             services.AddScoped<IUserRepository, UserRepository>();
+
+            /*Add token dependency*/
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                }
+                );
 
             services.AddAutoMapper(typeof(MemeMappers));
 
