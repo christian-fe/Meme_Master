@@ -38,6 +38,9 @@ namespace Memes
             //Dependency Injection for Photo Resource
             services.AddScoped<IPhotoRepository, PhotoRepository>();
 
+            //Dependency Injection for User Resource
+            services.AddScoped<IUserRepository, UserRepository>();
+
             services.AddAutoMapper(typeof(MemeMappers));
 
             services.AddControllers();

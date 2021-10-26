@@ -9,6 +9,7 @@ using System.IO;//*
 using Microsoft.AspNetCore.Hosting;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace Meme.Controllers
 {
@@ -77,6 +78,24 @@ namespace Meme.Controllers
             }
 
             return Ok(photoListDto);
+        }
+
+        [HttpGet("GetPhotoByName")]
+        public IActionResult GetPhotoByName(string photoName)
+        {
+            try
+            {
+                var result = _phRepo.GetPhotoByName(photoName);
+                if (result.Any()) 
+                { 
+                    return Ok(result); 
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving information from the database");
+            }
         }
 
         [HttpPost]

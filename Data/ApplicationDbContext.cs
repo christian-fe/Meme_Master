@@ -1,4 +1,5 @@
-﻿using Memes.Models;//*
+﻿
+using Memes.Models;//*
 using Microsoft.EntityFrameworkCore;//*
 
 namespace Memes.Data
@@ -12,5 +13,6 @@ namespace Memes.Data
 
         public DbSet<Category> Category { get; set; }
         public DbSet<Photo> Photo { get; set; }
+        public DbSet<User> User { get; set; }
     }
 }
