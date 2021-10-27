@@ -10,11 +10,15 @@ using Microsoft.AspNetCore.Hosting;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Meme.Controllers
 {
+    [Authorize]
     [Route("api/Photos")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "Api-Photo")]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class PhotosController : Controller
     {
         private readonly IPhotoRepository _phRepo;
@@ -27,7 +31,14 @@ namespace Meme.Controllers
             _hostingEnviroment = hostingEnvironment;
         }
 
+        /// <summary>
+        /// Get all the photos
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(List<PhotoDto>))]
+        [ProducesResponseType(400)]
         public IActionResult GetPhotos()
         {
             var photosList = _phRepo.GetPhoto();
@@ -42,7 +53,16 @@ namespace Meme.Controllers
             return Ok(photosDtoList);
         }
 
+        /// <summary>
+        /// Get photo by Id
+        /// </summary>
+        /// <param name="photoId">int Id</param>
+        /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet("{photoId:int}", Name = "GetPhoto")]
+        [ProducesResponseType(200, Type = typeof(PhotoDto))]
+        [ProducesResponseType(404)]
+        [ProducesDefaultResponseType]
         public IActionResult GetPhoto(int photoId)
         {
             var itemPhoto = _phRepo.GetPhoto(photoId);
@@ -59,7 +79,16 @@ namespace Meme.Controllers
 
         }
 
+        /// <summary>
+        /// Get the photos by category
+        /// </summary>
+        /// <param name="idCategory">int Id</param>
+        /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet("GetPhotoByCategory/{idCategory:int}")]
+        [ProducesResponseType(200, Type = typeof(PhotoDto))]
+        [ProducesResponseType(404)]
+        [ProducesDefaultResponseType]
         public IActionResult GetPhotoByCategory(int idCategory)
         {
             var photoList = _phRepo.GetPhotoByCategory(idCategory);
@@ -80,7 +109,16 @@ namespace Meme.Controllers
             return Ok(photoListDto);
         }
 
+        /// <summary>
+        /// Get photos by name
+        /// </summary>
+        /// <param name="photoName">string meme name</param>
+        /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet("GetPhotoByName")]
+        [ProducesResponseType(200, Type = typeof(PhotoDto))]
+        [ProducesResponseType(404)]
+        [ProducesDefaultResponseType]
         public IActionResult GetPhotoByName(string photoName)
         {
             try
@@ -98,7 +136,15 @@ namespace Meme.Controllers
             }
         }
 
+        /// <summary>
+        /// Make a new meme uploading photos
+        /// </summary>
+        /// <param name="photoDto"></param>
+        /// <returns></returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult CreatePhoto([FromForm] PhotoCreateDto photoDto)
         {
             //validate is not null
@@ -147,7 +193,16 @@ namespace Meme.Controllers
             return CreatedAtRoute("GetPhoto", new { photoId = photo.PhotoId }, photo);
         }
 
+        /// <summary>
+        /// Upadate a photo
+        /// </summary>
+        /// <param name="photoId"></param>
+        /// <param name="photoDto"></param>
+        /// <returns></returns>
         [HttpPatch("{photoId:int}", Name = "UpdatePhoto")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult UpdatePhoto(int photoId, [FromBody] PhotoDto photoDto)
         {
             //validate is not null or Id doesn't match
@@ -169,7 +224,16 @@ namespace Meme.Controllers
 
         }
 
+        /// <summary>
+        /// Delete a photo
+        /// </summary>
+        /// <param name="photoId"></param>
+        /// <returns></returns>
         [HttpDelete("{photoId:int}", Name = "DeletePhoto")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult DeletePhoto(int photoId)
         {
 

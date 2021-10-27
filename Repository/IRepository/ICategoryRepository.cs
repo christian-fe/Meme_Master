@@ -57,11 +57,14 @@ namespace Memes.Repository.IRepository
         /// <returns></returns>
         bool DeleteCategory(Category category);
 
+
+
         /// <summary>
         /// Perform the action save
         /// </summary>
         /// <param name="category"></param>
         /// <returns></returns>
         bool SaveChanges();
+
     }
 }

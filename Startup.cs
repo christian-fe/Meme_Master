@@ -17,6 +17,13 @@ using Memes.MemeMapper;//*
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Reflection;
+using System.IO;
+using Microsoft.OpenApi.Models;
+using System.Net;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using Memes.Helpers;
 
 namespace Memes
 {
@@ -60,7 +67,102 @@ namespace Memes
 
             services.AddAutoMapper(typeof(MemeMappers));
 
-            services.AddControllers();
+            //Start the documentation configuration
+            services.AddSwaggerGen(options =>
+            {
+                /*------------------------------CATEGORY--------------------------------*/
+                options.SwaggerDoc("Meme_Master", new OpenApiInfo()
+                {
+                    Title = "Api-Category",
+                    Version = "1",
+                    Description = "BackEnd Meme",
+                    Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+                    {
+                        Email = "meme.factory@madthings.com",
+                        Name = "UpSkillingProject",
+                        Url = new Uri("https://upSkilling.com")
+                    },
+                    License = new Microsoft.OpenApi.Models.OpenApiLicense()
+                    {
+                        Name = "NIT Licence",
+                        Url = new Uri("https://en.wikipedia.org/wiki/MIT_License")
+                    }
+
+                });
+                /*------------------------------PHOTO-----------------------------------*/
+                options.SwaggerDoc("Api-Photo", new OpenApiInfo()
+                {
+                    Title = "Api Photo",
+                    Version = "1",
+                    Description = "BackEnd Meme",
+                    Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+                    {
+                        Email = "meme.factory@madthings.com",
+                        Name = "UpSkillingProject",
+                        Url = new Uri("https://upSkilling.com")
+                    },
+                    License = new Microsoft.OpenApi.Models.OpenApiLicense()
+                    {
+                        Name = "NIT Licence",
+                        Url = new Uri("https://en.wikipedia.org/wiki/MIT_License")
+                    }
+
+                });
+                /*------------------------------USER------------------------------------*/
+                options.SwaggerDoc("Api-User", new OpenApiInfo()
+                {
+                    Title = "Api User",
+                    Version = "1",
+                    Description = "BackEnd Meme",
+                    Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+                    {
+                        Email = "meme.factory@madthings.com",
+                        Name = "UpSkillingProject",
+                        Url = new Uri("https://upSkilling.com")
+                    },
+                    License = new Microsoft.OpenApi.Models.OpenApiLicense()
+                    {
+                        Name = "NIT Licence",
+                        Url = new Uri("https://en.wikipedia.org/wiki/MIT_License")
+                    }
+
+                });
+
+                var xmlFileComents = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var pathApiComents = Path.Combine(AppContext.BaseDirectory, xmlFileComents);
+                options.IncludeXmlComments(pathApiComents);
+
+                //First definition schema
+                options.AddSecurityDefinition("Bearer",
+                    new OpenApiSecurityScheme
+                    {
+                        Description = "Autentication JWT (Bearer)",
+                        Type = SecuritySchemeType.Http,
+                        Scheme = "bearer"
+                    }
+                );
+
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Id = "Bearer",
+                                Type= ReferenceType.SecurityScheme
+                            }
+                        }, new List<string>()
+                    }
+
+                });
+
+            });
+                services.AddControllers();
+
+                //Bring CORS support
+                services.AddCors();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,10 +172,45 @@ namespace Memes
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler(builder =>
+                {
+                    builder.Run(async context =>
+                        {
+                            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                            var error = context.Features.Get<IExceptionHandlerFeature>();
+
+                            if(error != null)
+                            {
+                                context.Response.AddAppicationError(error.Error.Message);
+                                await context.Response.WriteAsync(error.Error.Message);
+                            }
+                        });
+                });
+            }
 
             app.UseHttpsRedirection();
 
+            //Api documentation with Swagger
+            app.UseSwagger();
+
+            //End Point
+            app.UseSwaggerUI(options=>
+            {
+                options.SwaggerEndpoint("/swagger/Meme_Master/swagger.json", "Api-Category");
+                options.SwaggerEndpoint("/swagger/Api-Photo/swagger.json", "Api-Photo");
+                options.SwaggerEndpoint("/swagger/Api-User/swagger.json", "Api-User");
+                options.RoutePrefix = "";
+            });
+
+
             app.UseRouting();
+
+            //Autentication and Autorization
+            app.UseAuthentication();
+            app.UseAuthorization();
+
 
             app.UseAuthorization();
 
@@ -81,6 +218,9 @@ namespace Memes
             {
                 endpoints.MapControllers();
             });
+
+            //Bring CORS support
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
         }
     }
 }

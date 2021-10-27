@@ -77,6 +77,7 @@ namespace Memes.Repository
 
         }
 
+       
         public User Registry(User user, string password)
         {
             byte[] passwordHash, passwordSalt;

@@ -1,0 +1,454 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Meme</name>
+    </assembly>
+    <members>
+        <member name="M:Memes.Controllers.CategoriesController.GetCategories">
+            <summary>
+            To obtain all the categories
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Controllers.CategoriesController.GetCategory(System.Int32)">
+            <summary>
+            To obtain only one category
+            </summary>
+            <param name="categoryId">this is the Id category</param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Controllers.CategoriesController.CreateCategory(Memes.Models.Dto.CategoryDto)">
+            <summary>
+            Create a new category
+            </summary>
+            <param name="categoryDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Controllers.CategoriesController.UpdateCategory(System.Int32,Memes.Models.Dto.CategoryDto)">
+            <summary>
+            Update an existent category
+            </summary>
+            <param name="categoryId"></param>
+            <param name="categoryDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Controllers.CategoriesController.DeleteCategory(System.Int32)">
+            <summary>
+            Delete an specific category
+            </summary>
+            <param name="categoryId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Controllers.UsersController.GetUsers">
+            <summary>
+            Get all users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Controllers.UsersController.GetUser(System.Int32)">
+            <summary>
+            Get a user by id
+            </summary>
+            <param name="Id">int Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Controllers.UsersController.Registry(Memes.Models.Dto.UserAuthDto)">
+            <summary>
+            Regitry for new users
+            </summary>
+            <param name="userAuthDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Controllers.UsersController.Login(Memes.Models.Dto.UserAuthLoginDto)">
+            <summary>
+            Perform a Log In
+            </summary>
+            <param name="userAuthLoginDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.CategoryRepository.CreateCategory(Memes.Models.Category)">
+            <summary>
+            Add a new category
+            </summary>
+            <param name="category"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.CategoryRepository.DeleteCategory(Memes.Models.Category)">
+            <summary>
+            Delete category
+            </summary>
+            <param name="category"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.CategoryRepository.ExistCategory(System.String)">
+            <summary>
+            Validate the category existence by name
+            </summary>
+            <param name="CategoryName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.CategoryRepository.ExistCategory(System.Int32)">
+            <summary>
+            Validate the the category existence by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.CategoryRepository.GetCategories">
+            <summary>
+            Obtain all categories
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.CategoryRepository.GetCategory(System.Int32)">
+            <summary>
+            return a catagory object funded by Id
+            </summary>
+            <param name="categoryId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.CategoryRepository.SaveChanges">
+            <summary>
+            Save changes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.CategoryRepository.UpdateCategory(Memes.Models.Category)">
+            <summary>
+            Update Category
+            </summary>
+            <param name="category"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Memes.Repository.IRepository.ICategoryRepository">
+            <summary>
+            Methods for Category Entity
+            </summary>
+        </member>
+        <member name="M:Memes.Repository.IRepository.ICategoryRepository.GetCategories">
+            <summary>
+            Retrieve all categories
+            </summary>
+            <returns>Categories objects</returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.ICategoryRepository.GetCategory(System.Int32)">
+            <summary>
+            Retrieve only one category
+            </summary>
+            <param name="CategoriaId"></param>
+            <returns>object category</returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.ICategoryRepository.ExistCategory(System.String)">
+            <summary>
+            Validate the existence of a category by name
+            </summary>
+            <param name="CategoryName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.ICategoryRepository.ExistCategory(System.Int32)">
+            <summary>
+            Validate the existence of a category by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.ICategoryRepository.CreateCategory(Memes.Models.Category)">
+            <summary>
+            Create a new category
+            </summary>
+            <param name="category"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.ICategoryRepository.UpdateCategory(Memes.Models.Category)">
+            <summary>
+            Update category
+            </summary>
+            <param name="category"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.ICategoryRepository.DeleteCategory(Memes.Models.Category)">
+            <summary>
+            Delete category
+            </summary>
+            <param name="category"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.ICategoryRepository.SaveChanges">
+            <summary>
+            Perform the action save
+            </summary>
+            <param name="category"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Memes.Repository.IRepository.IPhotoRepository">
+            <summary>
+            Methods for Photo Entity
+            </summary>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IPhotoRepository.GetPhoto">
+            <summary>
+            Retrieve all photo
+            </summary>
+            <returns>Meme objects</returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IPhotoRepository.GetPhotoByCategory(System.Int32)">
+            <summary>
+            Retrieve all photos by category
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IPhotoRepository.GetPhoto(System.Int32)">
+            <summary>
+            Retrieve only one photo
+            </summary>
+            <param name="photoId"></param>
+            <returns>object category</returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IPhotoRepository.ExistPhoto(System.String)">
+            <summary>
+            Validate the existence of a photo by name
+            </summary>
+            <param name="photoName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IPhotoRepository.GetPhotoByName(System.String)">
+            <summary>
+            Get Photos By Name
+            </summary>
+            <param name="photoName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IPhotoRepository.ExistPhoto(System.Int32)">
+            <summary>
+            Validate the existence of a photo by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IPhotoRepository.CreatePhoto(Memes.Models.Photo)">
+            <summary>
+            Create a new photo
+            </summary>
+            <param name="photo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IPhotoRepository.UpdatePhoto(Memes.Models.Photo)">
+            <summary>
+            Update photo
+            </summary>
+            <param name="meme"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IPhotoRepository.DeletePhoto(Memes.Models.Photo)">
+            <summary>
+            Delete a photo
+            </summary>
+            <param name="photo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IPhotoRepository.SaveChanges">
+            <summary>
+            Perform the action save
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Memes.Repository.IRepository.IUserRepository">
+            <summary>
+            Methods for User Entity
+            </summary>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IUserRepository.GetUsers">
+            <summary>
+            Retrieve all User
+            </summary>
+            <returns>Meme objects</returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IUserRepository.GetUser(System.Int32)">
+            <summary>
+            Retrieve only one User
+            </summary>
+            <param name="userId"></param>
+            <returns>object user</returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IUserRepository.ExistUser(System.String)">
+            <summary>
+            Validate the existence of a User by name
+            </summary>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IUserRepository.Registry(Memes.Models.User,System.String)">
+            <summary>
+            Sing Up
+            </summary>
+            <param name="user"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IUserRepository.Login(System.String,System.String)">
+            <summary>
+            Sing In
+            </summary>
+            <param name="user"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.IRepository.IUserRepository.SaveChanges">
+            <summary>
+            Perform the action save
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.PhotoRepository.CreatePhoto(Memes.Models.Photo)">
+            <summary>
+            Create a new photo
+            </summary>
+            <param name="photo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.PhotoRepository.DeletePhoto(Memes.Models.Photo)">
+            <summary>
+            Delete a Photo
+            </summary>
+            <param name="photo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.PhotoRepository.ExistPhoto(System.String)">
+            <summary>
+            Validate if photo exist by name
+            </summary>
+            <param name="photoName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.PhotoRepository.ExistPhoto(System.Int32)">
+            <summary>
+            Validate if photo exist by Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.PhotoRepository.GetPhoto">
+            <summary>
+            Get all the photos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.PhotoRepository.GetPhoto(System.Int32)">
+            <summary>
+            Get photo by id
+            </summary>
+            <param name="photoId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.PhotoRepository.GetPhotoByCategory(System.Int32)">
+            <summary>
+            Get photo by categoryId
+            </summary>
+            <param name="idCategory"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.PhotoRepository.GetPhotoByName(System.String)">
+            <summary>
+            Get Photo ByName
+            </summary>
+            <param name="photoName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.PhotoRepository.SaveChanges">
+            <summary>
+            Save Changes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.PhotoRepository.UpdatePhoto(Memes.Models.Photo)">
+            <summary>
+            Update Photo
+            </summary>
+            <param name="photo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.UserRepository.ExistUser(System.String)">
+            <summary>
+            Validate if the user exist
+            </summary>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.UserRepository.GetUser(System.Int32)">
+            <summary>
+            Get user by Id
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.UserRepository.GetUsers">
+            <summary>
+            Get all users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.UserRepository.Login(System.String,System.String)">
+            <summary>
+            Login
+            </summary>
+            <param name="user"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Memes.Repository.UserRepository.SaveChanges">
+            <summary>
+            Perform Save action
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Meme.Controllers.PhotosController.GetPhotos">
+            <summary>
+            Get all the photos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Meme.Controllers.PhotosController.GetPhoto(System.Int32)">
+            <summary>
+            Get photo by Id
+            </summary>
+            <param name="photoId">int Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Meme.Controllers.PhotosController.GetPhotoByCategory(System.Int32)">
+            <summary>
+            Get the photos by category
+            </summary>
+            <param name="idCategory">int Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Meme.Controllers.PhotosController.GetPhotoByName(System.String)">
+            <summary>
+            Get photos by name
+            </summary>
+            <param name="photoName">string meme name</param>
+            <returns></returns>
+        </member>
+        <member name="M:Meme.Controllers.PhotosController.CreatePhoto(Memes.Models.Dto.PhotoCreateDto)">
+            <summary>
+            Make a new meme uploading photos
+            </summary>
+            <param name="photoDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Meme.Controllers.PhotosController.UpdatePhoto(System.Int32,Memes.Models.Dto.PhotoDto)">
+            <summary>
+            Upadate a photo
+            </summary>
+            <param name="photoId"></param>
+            <param name="photoDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Meme.Controllers.PhotosController.DeletePhoto(System.Int32)">
+            <summary>
+            Delete a photo
+            </summary>
+            <param name="photoId"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
