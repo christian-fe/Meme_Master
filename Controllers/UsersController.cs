@@ -36,6 +36,7 @@ namespace Memes.Controllers
         /// Get all users
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous] // - temporal
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(List<UserDto>))]
         [ProducesResponseType(400)]
@@ -58,6 +59,7 @@ namespace Memes.Controllers
         /// </summary>
         /// <param name="Id">int Id</param>
         /// <returns></returns>
+        [AllowAnonymous] // - temporal
         [HttpGet("{Id:int}", Name = "GetUser")]
         [ProducesResponseType(200, Type = typeof(UserDto))]
         [ProducesResponseType(404)]

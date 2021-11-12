@@ -77,6 +77,7 @@ namespace Memes.Controllers
         /// </summary>
         /// <param name="categoryDto"></param>
         /// <returns></returns>
+        [AllowAnonymous]//-temporal
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(CategoryDto))]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -115,6 +116,7 @@ namespace Memes.Controllers
         /// <param name="categoryId"></param>
         /// <param name="categoryDto"></param>
         /// <returns></returns>
+        [AllowAnonymous]//-temporal
         [HttpPatch("{categoryId:int}", Name = "UpdateCategory")]
         [ProducesResponseType(204)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -145,6 +147,7 @@ namespace Memes.Controllers
         /// </summary>
         /// <param name="categoryId"></param>
         /// <returns></returns>
+        [AllowAnonymous]//-temporal
         [HttpDelete("{categoryId:int}", Name = "DeleteCategory")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

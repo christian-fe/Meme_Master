@@ -141,6 +141,7 @@ namespace Meme.Controllers
         /// </summary>
         /// <param name="photoDto"></param>
         /// <returns></returns>
+        [AllowAnonymous] // - temporal
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -199,6 +200,7 @@ namespace Meme.Controllers
         /// <param name="photoId"></param>
         /// <param name="photoDto"></param>
         /// <returns></returns>
+        [AllowAnonymous] // - temporal
         [HttpPatch("{photoId:int}", Name = "UpdatePhoto")]
         [ProducesResponseType(204)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -229,6 +231,7 @@ namespace Meme.Controllers
         /// </summary>
         /// <param name="photoId"></param>
         /// <returns></returns>
+        [AllowAnonymous] // - temporal
         [HttpDelete("{photoId:int}", Name = "DeletePhoto")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
